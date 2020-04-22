@@ -1,0 +1,28 @@
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    # Means we are going to be pointing to nginx, not load balancer
+    kubernetes.io/ingress.class: "nginx"
+    # Should be the same name is in the letsecnrypt-staging-issuer.yaml file.
+    cert-manager.io/issuer: "{{if .Values.staging}}ca-issuer{{else}}ca-issuer-production{{end}}"
+  name: my-ingress
+  namespace: default
+spec:
+  rules:
+    {{- range .Values.domains }}
+    - host: {{ .host }}
+      http:
+        paths:
+          - backend:
+              serviceName: {{ .service }}
+              servicePort: {{ .port }}
+            path: {{ .path }}
+    {{- end }}
+  tls:
+    - hosts:
+        {{- range .Values.domains }}
+        - {{ .host }}
+        {{- end }}
+      secretName: my-https-secret

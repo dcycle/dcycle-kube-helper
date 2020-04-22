@@ -1,0 +1,3 @@
+SERVICE=jenkins
+PORT=8080
+DOMAIN_PATH=/

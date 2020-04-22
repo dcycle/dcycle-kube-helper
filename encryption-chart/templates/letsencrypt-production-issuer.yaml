@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Issuer
+metadata:
+  # This name, ca-issuer, should also be in my-ingress's metadata section.
+  name: ca-issuer-production
+  namespace: default
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: {{ .Values.cert_email }}
+    privateKeySecretRef:
+      name: letsencrypt
+    # Enable the HTTP-01 challenge provider
+    solvers:
+    - selector: {}
+      http01:
+        ingress:
+          class: nginx
