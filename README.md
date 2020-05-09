@@ -1,6 +1,9 @@
 Dcycle Kube helper
 =====
 
+Accompanies the blog post [Deploying Drupal to Kubernetes, no previous knowledge required
+April 22, 2020, Dcycle Blog](https://blog.dcycle.com/kubernetes/).
+
 Helper scripts
 -----
 
@@ -57,4 +60,4 @@ Uninstalling
 Resources
 -----
 
-    * [How To Create Your First Helm Chart, Bitnami documentation](https://docs.bitnami.com/kubernetes/how-to/create-your-first-helm-chart/)
+* [How To Create Your First Helm Chart, Bitnami documentation](https://docs.bitnami.com/kubernetes/how-to/create-your-first-helm-chart/)
