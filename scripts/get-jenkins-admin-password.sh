@@ -4,5 +4,4 @@
 #
 set -e
 
-printf $(kubectl get secret --namespace default my-jenkins -o jsonpath="{.data.jenkins-admin-user}" | base64 --decode);echo
-printf $(kubectl get secret --namespace default my-jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo
+kubectl exec --namespace default -it svc/my-jenkins -c jenkins -- /bin/cat /run/secrets/additional/chart-admin-password && echo
